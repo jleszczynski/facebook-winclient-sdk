@@ -27,5 +27,8 @@ namespace Facebook.Client
 {
     public class FacebookWebDialog : FacebookDialog
     {
+        public static void MyTesting()
+        {
+        }
     }
 }
