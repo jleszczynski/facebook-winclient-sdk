@@ -25,7 +25,16 @@ using System.Threading.Tasks;
 
 namespace Facebook.Client
 {
+    public class DialogResult
+    {
+    }
+
     public class FacebookDialog
     {
+        public async Task<DialogResult> PresentDialog(object parameters)
+        {
+
+            return null;
+        }
     }
 }

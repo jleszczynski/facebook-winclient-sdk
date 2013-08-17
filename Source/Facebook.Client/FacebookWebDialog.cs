@@ -27,7 +27,11 @@ namespace Facebook.Client
 {
     public class FacebookWebDialog : FacebookDialog
     {
-        public static void MyTesting()
+        public static void PresentFeedDialogAsync()
+        {
+        }
+
+        public static void PresentRequestDialogAsync()
         {
         }
     }
