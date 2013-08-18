@@ -216,6 +216,7 @@
     <Compile Include="Controls\Converters\ImageSourceUriConverter.cs" />
     <Compile Include="Controls\FriendPicker\FriendPicker.cs" />
     <Compile Include="Controls\Picker\Picker.cs" />
+    <Compile Include="PhoneWebDialog.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

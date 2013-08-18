@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Facebook;
 
 namespace Facebook.Client
 {
@@ -31,9 +32,11 @@ namespace Facebook.Client
 
     public class FacebookDialog
     {
-        public async Task<DialogResult> PresentDialog(object parameters)
+        public async Task<DialogResult> PresentDialog(string method, string[] parameters)
         {
-
+            FacebookClient client = new FacebookClient();
+            Uri uri = client.GetDialogUrl(method, parameters);
+            
             return null;
         }
     }
