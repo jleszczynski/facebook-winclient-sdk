@@ -25,14 +25,61 @@ using System.Threading.Tasks;
 
 namespace Facebook.Client
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class FacebookWebDialog : FacebookDialog
     {
-        public static void PresentFeedDialogAsync()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<WebDialogResult> PresentFeedDialogAsync()
         {
+            return await FacebookDialog.PresentDialogAsync("feed", null);
         }
 
-        public static void PresentRequestDialogAsync()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<WebDialogResult> PresentFriendsDialogAsync()
         {
+            return await FacebookDialog.PresentDialogAsync("friends", null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<WebDialogResult> PresentPayDialogAsync()
+        {
+            return await FacebookDialog.PresentDialogAsync("pay", null);
+        }
+
+        /// <summary>
+        /// Present Request Dialog asyncronizely
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<WebDialogResult> PresentRequestDialogAsync(string title, string message, Dictionary<string, string> parameters)
+        {
+            if (parameters == null)
+            {
+                parameters = new Dictionary<string, string>();
+            }
+
+            parameters.Add("title", title);
+            parameters.Add("message", message);
+            return await FacebookDialog.PresentDialogAsync("apprequests", parameters);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<WebDialogResult> PresentSendDialogAsync()
+        {
+            return await FacebookDialog.PresentDialogAsync("send", null);
         }
     }
 }

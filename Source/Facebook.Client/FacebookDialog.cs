@@ -37,12 +37,24 @@ namespace Facebook.Client
         /// <param name="method"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public Task<WebDialogResult> PresentDialog(string method, string[] parameters)
+        public static async Task<WebDialogResult> PresentDialogAsync(string method, object parameters)
         {
             FacebookClient client = new FacebookClient();
-            Uri uri = client.GetDialogUrl(method, parameters);
-            
-            return null;
+            Uri startUri = client.GetDialogUrl(method, parameters);
+
+            Uri endUri = new Uri("https://www.facebook.com/connect/login_success.html");
+
+            var result = await WebDialogBroker.PresentAsync(WebDialogOptions.None, startUri, endUri);
+
+            if (result.ResponseStatus == WebDialogStatus.ErrorHttp)
+            {
+                throw new InvalidOperationException();
+            }
+            else if (result.ResponseStatus == WebDialogStatus.UserCancel)
+            {
+                throw new InvalidOperationException();
+            }
+            return result;
         }
     }
 }

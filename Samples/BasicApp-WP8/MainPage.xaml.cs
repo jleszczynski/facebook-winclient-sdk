@@ -34,5 +34,14 @@
         {
             MessageBox.Show(e.Description, e.Reason, MessageBoxButton.OK);
         }
+
+        private async void contentPanel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (contentPanel.SelectedItem == RequestPivotItem)
+            {
+                var result = await Facebook.Client.FacebookWebDialog.PresentRequestDialogAsync(
+                    "My Title", "My Message", null);
+            }
+        }
     }
 }
