@@ -16,13 +16,13 @@ using System.Windows.Threading;
 
 namespace Facebook.Client
 {
-    internal enum WebDialogOptions
+    public enum WebDialogOptions
     {
         None,
         SilentMode
     }
 
-    internal enum WebDialogStatus
+    public enum WebDialogStatus
     {
         Success = 0,
 
@@ -31,7 +31,7 @@ namespace Facebook.Client
         ErrorHttp = 2
     }
 
-    internal sealed class WebDialogResult
+    public class WebDialogResult
     {
         public string ResponseData { get; private set; }
 
@@ -47,7 +47,7 @@ namespace Facebook.Client
         }
     }
 
-    internal sealed class WebDialogBroker
+    public class WebDialogBroker
     {
         private static string responseData = "";
         private static uint responseErrorDetail = 0;

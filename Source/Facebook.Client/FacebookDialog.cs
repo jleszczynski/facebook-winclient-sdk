@@ -26,13 +26,18 @@ using Facebook;
 
 namespace Facebook.Client
 {
-    public class DialogResult
-    {
-    }
-
+    /// <summary>
+    /// Facebook Dialog
+    /// </summary>
     public class FacebookDialog
     {
-        public async Task<DialogResult> PresentDialog(string method, string[] parameters)
+        /// <summary>
+        /// Present Dialog asyncronizely
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public Task<WebDialogResult> PresentDialog(string method, string[] parameters)
         {
             FacebookClient client = new FacebookClient();
             Uri uri = client.GetDialogUrl(method, parameters);
