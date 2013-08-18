@@ -61,11 +61,11 @@ namespace Facebook.Client
         /// Present Request Dialog asyncronizely
         /// </summary>
         /// <returns></returns>
-        public static async Task<WebDialogResult> PresentRequestDialogAsync(string title, string message, Dictionary<string, string> parameters)
+        public static async Task<WebDialogResult> PresentRequestDialogAsync(string title, string message, Dictionary<string, object> parameters)
         {
             if (parameters == null)
             {
-                parameters = new Dictionary<string, string>();
+                parameters = new Dictionary<string, object>();
             }
 
             parameters.Add("title", title);

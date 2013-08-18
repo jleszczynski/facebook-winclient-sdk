@@ -37,24 +37,36 @@ namespace Facebook.Client
         /// <param name="method"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static async Task<WebDialogResult> PresentDialogAsync(string method, object parameters)
+        public static async Task<WebDialogResult> PresentDialogAsync(string method, Dictionary<string, object> parameters)
         {
-            FacebookClient client = new FacebookClient();
-            Uri startUri = client.GetDialogUrl(method, parameters);
-
-            Uri endUri = new Uri("https://www.facebook.com/connect/login_success.html");
-
-            var result = await WebDialogBroker.PresentAsync(WebDialogOptions.None, startUri, endUri);
-
-            if (result.ResponseStatus == WebDialogStatus.ErrorHttp)
+            var session = FacebookSessionCacheProvider.Current.GetSessionData();
+            if (session != null)
             {
-                throw new InvalidOperationException();
+                FacebookClient client = new FacebookClient();
+                client.AppId = session.AppId;
+
+                if (parameters != null && !parameters.ContainsKey("redirect_uri"))
+                {
+                    parameters.Add("redirect_uri", "https://www.facebook.com/connect/login_success.html");
+                }
+                Uri startUri = client.GetDialogUrl(method, parameters);
+
+                Uri endUri = new Uri("https://www.facebook.com/connect/login_success.html");
+
+                var result = await WebDialogBroker.PresentAsync(WebDialogOptions.None, startUri, endUri);
+
+                if (result.ResponseStatus == WebDialogStatus.ErrorHttp)
+                {
+                    throw new InvalidOperationException();
+                }
+                else if (result.ResponseStatus == WebDialogStatus.UserCancel)
+                {
+                    throw new InvalidOperationException();
+                }
+                return result;
             }
-            else if (result.ResponseStatus == WebDialogStatus.UserCancel)
-            {
-                throw new InvalidOperationException();
-            }
-            return result;
+            else
+                return null;
         }
     }
 }

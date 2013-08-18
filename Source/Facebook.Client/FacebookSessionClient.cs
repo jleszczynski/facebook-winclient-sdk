@@ -116,6 +116,7 @@ namespace Facebook.Client
                         AccessToken = authResult.AccessToken,
                         Expires = authResult.Expires,
                         FacebookId = (string)dict["id"],
+                        AppId = this.AppId
                     };
                   
                 }
@@ -139,6 +140,7 @@ namespace Facebook.Client
                         {
                             session.AccessToken = authResult.AccessToken;
                             session.Expires = authResult.Expires;
+                            session.AppId = this.AppId;
                         }
                     }
                 }
