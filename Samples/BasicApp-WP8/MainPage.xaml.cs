@@ -3,6 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Controls;
+    using Facebook.Client;
     using Facebook.Client.Controls;
     using Microsoft.Phone.Controls;
 
@@ -39,7 +40,7 @@
         {
             if (contentPanel.SelectedItem == RequestPivotItem)
             {
-                var result = await Facebook.Client.FacebookWebDialog.PresentRequestDialogAsync(
+                var result = await FacebookWebDialog.PresentRequestDialogAsync(
                     "My Title", "My Message", null);
             }
         }
