@@ -101,7 +101,8 @@ namespace Facebook.Client
         /// </summary>
         private void BrowserControl_Navigating(object sender, NavigatingEventArgs e)
         {
-            if (e.Uri == WebDialogBroker.EndUri)
+            if (e.Uri.OriginalString.Contains("?") &&
+                e.Uri.OriginalString.Substring(0, e.Uri.OriginalString.IndexOf("?")) == WebDialogBroker.EndUri.OriginalString)
             {
                 responseData = e.Uri.ToString();
                 responseStatus = WebDialogStatus.Success;
